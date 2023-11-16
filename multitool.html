@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Something new</title>
+    <meta name="author" content="Martin Lalus">
+    <meta name="keywords" content="HTML, CSS, JS">
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        border: none;
+      }
+      body {
+        background-color: cornflowerblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+      }
+      input {
+        border: 2px solid black;
+      }
+      span {
+        background-color: red;
+        border-radius: 10px;
+        padding: 2px;
+        color: yellow;
+      }
+      .root-container {
+        width: 60%;
+        height: 500px;
+        background-color: #A0E6FF;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+      }
+      .calc-wrapper {
+        width: 40%;
+        height: 90%;
+        background-color: lightcyan;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        border-radius: 12px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+      }
+      .calc-display {
+        width: 80%;
+        height: 10%;
+        padding: 5px;
+        margin-bottom: 5px;
+        background-color: cornflowerblue;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        border: 2.5px solid #FF4466;
+        border-radius: 12px;
+        font-size: 20px;
+        font-family: monospace, Arial, Helvetica, sans-serif;
+        color: yellow;
+        text-align: center;
+        word-wrap: break-word;
+      }
+      .numeric-keypad {
+        width: 80%;
+        height: 55%;
+        padding: 10px;
+        margin-bottom: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: flex-start;
+        background-color: cornflowerblue;
+        box-shadow: 5px 5px 5px #FF4466;;
+        border: 2.5px solid #FF4466;
+        border-radius: 12px;
+        color: lightcyan;
+      }
+      .numeric-keypad input {
+        width: 37px;
+        height: 37px;
+        padding: 5px;
+        margin: 7px;
+        border-radius: 25px;
+        background-color: #66FF66;
+        font-size: 19px;
+        font-weight: bold;
+        font-family: monospace, Helvetica, sans-serif;
+        box-shadow: 3px 3px 3px lightcyan;
+        cursor: pointer;
+      }
+      .numeric-keypad input:hover {
+        background-color: #FF4466;
+        color: black;
+      }
+      .arithmetic-operations-keypad {
+        width: 80%;
+        height: 30%;
+        background-color: cornflowerblue;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: flex-start;
+        border-radius: 12px;
+        color: lightcyan;
+      }
+      .arithmetic-operations-keypad input {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        margin: 7px;
+        border-radius: 25px;
+        background-color: #CCFF00;
+        font-size: 19px;
+        font-weight: bold;
+        font-family: monospace, Helvetica, sans-serif;
+        box-shadow: 3px 3px 3px lightcyan;
+        cursor: pointer;
+      }
+      .arithmetic-operations-keypad input:hover {
+        background-color: #FF4466;
+        color: black;
+      }
+      .notes-wrapper {
+        width: 50%;
+        height: 90%;
+        background-color: lightcyan;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        border-radius: 12px;
+        padding: 3px;
+        display: flex;
+        align-items: center;
+        align-content: flex-start;
+        flex-direction: column;
+      }
+      .notes-wrapper header {
+        width: 95%;
+        height: 10%;
+        padding: 12px;
+        margin-bottom: 13px;
+        background-color: #FF4466;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+      }
+      .notes-wrapper header h3 {
+        font-weight: bold;
+        font-family: monospace, Arial, Helvetica, sans-serif;
+        color: lightcyan;
+        text-align: center;
+      }
+      .inputs-panel {
+        width: 95%;
+        height: 30%;
+        padding: 10px;
+        margin-bottom: 13px;
+        background-color: cornflowerblue;
+        border-radius: 12px;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: auto;
+      }
+      .inputs-panel::-webkit-scrollbar {
+        display: none;
+      }
+      .inputs-panel input {
+        width: 90%;
+        height: 120px;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        border: 2.5px solid #FF4466;
+        border-radius: 12px;
+        color: #FF4466;
+        letter-spacing: 1.5px;
+        font-size: 16px;
+        font-family: monospace, Arial, Helvetica, sans-serif;
+      }
+      .inputs-panel button {
+        width: 25%;
+        height: fit-content;
+        padding: 10px;
+        text-align: center;
+        background-color: #FF4466;
+        border-radius: 12px;
+        color: lightcyan;
+      }
+      .text-output-panel {
+        width: 95%;
+        height: 50%;
+        padding: 5px;
+        background-color: cornflowerblue;
+        border-radius: 12px;
+        border: 2.5px solid #FF4466;
+        box-shadow: 5px 5px 5.5px #FF4466;
+        overflow-y: auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .text-output-panel::-webkit-scrollbar {
+        display: none;
+      }
+      .text-note {
+        background-color: lightcyan;
+        color: black;
+        border-radius: 12px;
+        padding: 8px;
+        margin: 6px 0 6px 0;
+        text-align: center;
+        letter-spacing: 1.5px;
+        word-break: break-all;
+        font-weight: bold;
+      }
+      .dev-text {
+        background-color: yellow;
+        color: black;
+        border-radius: 12px;
+        padding: 8px;
+        margin: 6px 0 6px 0;
+        text-align: center;
+        letter-spacing: 1.5px;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body id="main-screen">
+    <div class="root-container" id="root-container">
+      <section class="calc-wrapper" id="calc-wrapper">
+          <input type="text" class="calc-display" id="display" name="display">
+        <div class="numeric-keypad" id="numeric-keypad">
+          <input type="button" value="0" class="numeric-key" onclick="display.value += '0' ">
+          <input type="button" value="1" class="numeric-key" onclick="display.value += '1' ">
+          <input type="button" value="2" class="numeric-key" onclick="display.value += '2' ">
+          <input type="button" value="3" class="numeric-key" onclick="display.value += '3' ">
+          <input type="button" value="4" class="numeric-key" onclick="display.value += '4' ">
+          <input type="button" value="5" class="numeric-key" onclick="display.value += '5' ">
+          <input type="button" value="6" class="numeric-key" onclick="display.value += '6' ">
+          <input type="button" value="7" class="numeric-key" onclick="display.value += '7' ">
+          <input type="button" value="8" class="numeric-key" onclick="display.value += '8' ">
+          <input type="button" value="9" class="numeric-key" onclick="display.value += '9' ">
+          <input type="button" value="." class="numeric-key" onclick="display.value += '.' ">
+          <input type="button" value="On" class="numeric-key" title="enter" style="font-size: 14px" id="enter-key">
+        </div>
+        <div class="arithmetic-operations-keypad" id="arithmetic-operations-keypad">
+          <input type="button" value="+" class="arithmetic-key" onclick="display.value += '+' ">
+          <input type="button" value="-" class="arithmetic-key" onclick="display.value += '-' ">
+          <input type="button" value="*" class="arithmetic-key" onclick="display.value += '*' ">
+          <input type="button" value="/" class="arithmetic-key" onclick="display.value += '/' ">
+          <input type="button" style="background-color: navy; color: yellow;" value="=" class="arithmetic-key" onclick="eval(display.value = eval(display.value))">
+          <input type="button" style="background-color: navy; color: yellow; " value="AC" class="arithmetic-key" style="font-size: 12px" title="clear all" onclick="display.value = '' ">
+        </div>
+      </section>
+      <section class="notes-wrapper" id="notes-wrapper">
+        <header id="note-panel-header">
+          <h3>Your Note Panel</h3>
+        </header>
+        <div class="inputs-panel" id="inputs-panel">
+          <input type="text" class="text-field" id="text-field" placeholder="Write a Note...">
+          <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; width: 100%;">
+            <button class="notes-btn" id="output-btn" style="cursor: pointer; margin-right: 6px; width: 100px">Add Note</button>
+            <button class="notes-btn" id="clear-btn" style="cursor: pointer; margin-right: 6px">Clear All</button>
+            <button class="notes-btn" id="lights-off-btn" style="cursor: pointer; width: 120px;">Turn Off Lights</button>
+          </div>
+        </div>
+        <div class="text-output-panel" id="text-output-panel">
+          
+        </div>
+      </section>
+    </div>
+    <script>
+      let textNote;
+      let numberKeys = document.getElementsByClassName("numeric-key");
+      let arithmeticKeys = document.getElementsByClassName("arithmetic-key");
+      let notesArr = document.getElementsByClassName("text-note");
+      let notesBtns = document.getElementsByClassName("notes-btn")
+
+      textNote = document.createElement("p");
+      textNote.setAttribute("class", "text-note");
+      textNote.innerHTML = "<em>Developer</em>: The 'On' key turns on the lights, whereas you can also turn them off :)";
+      textNote.style.fontSize = "14px";
+      document.getElementById("text-output-panel").appendChild(textNote);
+
+      document.getElementById("output-btn").onclick = function() {
+        if (document.getElementById("text-field").value == "") {
+            alert("Field is empty!");
+        } else {
+            textNote = document.createElement("p");
+            textNote.setAttribute("class", "text-note");
+            textNote.setAttribute("id", "text-note");
+            textNote.innerHTML = document.getElementById("text-field").value;
+            document.getElementById("text-output-panel").appendChild(textNote);
+            document.getElementById("text-field").value = "";
+        }
+      }
+
+      document.getElementById("enter-key").onclick = function() {
+            document.getElementById("main-screen").style.backgroundColor = "gold";
+            document.getElementById("root-container").style.backgroundColor = "black";
+            document.getElementById("notes-wrapper").style.backgroundColor = "yellow";
+            document.getElementById("calc-wrapper").style.backgroundColor = "yellow";
+            document.getElementById("display").style.backgroundColor = "black";
+            document.getElementById("numeric-keypad").style.backgroundColor = "black";
+            document.getElementById("arithmetic-operations-keypad").style.backgroundColor = "black";
+            document.getElementById("inputs-panel").style.backgroundColor = "black";
+            document.getElementById("text-output-panel").style.backgroundColor = "black";
+
+            for (let nk = 0; nk < numberKeys.length; nk++) {
+                numberKeys[nk].style.backgroundColor = "yellow";
+                numberKeys[nk].style.color = "navy";
+            }
+            for (let ak = 0; ak < arithmeticKeys.length; ak++) {
+                arithmeticKeys[ak].style.backgroundColor = "gold";
+                arithmeticKeys[ak].style.color = "navy";
+            }
+        }
+
+      document.getElementById("clear-btn").onclick = function() {
+        notes = document.getElementsByClassName("text-note");
+        
+        for (let tn = 0; tn < notes.length; tn++) {
+            notes[tn].style.display = "none";
+        }
+      }
+     document.getElementById("lights-off-btn").onclick = function() {
+        document.getElementById("main-screen").style.backgroundColor = "black";
+        document.getElementById("calc-wrapper").style.backgroundColor = "transparent";
+        document.getElementById("notes-wrapper").style.backgroundColor = "transparent";
+        document.getElementById("text-field").style.backgroundColor = "transparent";
+        document.getElementById("text-field").style.color = "yellow";
+        document.getElementById("note-panel-header").style.backgroundColor = "transparent";
+
+        for (let tn = 0; tn < notesArr.length; tn++) {
+            notesArr[tn].style.backgroundColor = "transparent";
+            notesArr[tn].style.color = "yellow";
+        }
+
+        for (let nk2 = 0; nk2 < numberKeys.length; nk2++) {
+            numberKeys[nk2].style.backgroundColor = "transparent";
+            numberKeys[nk2].style.border = "2px solid lightcyan";
+            numberKeys[nk2].style.boxShadow = "3px 3px 3px lightcyan";
+            numberKeys[nk2].style.color = "lightcyan";
+        }
+        for (let ak2 = 0; ak2 < arithmeticKeys.length; ak2++) {
+            arithmeticKeys[ak2].style.backgroundColor = "transparent";
+            arithmeticKeys[ak2].style.border = "2px solid lightcyan";
+            arithmeticKeys[ak2].boxShadow = "3px 3px 3px lightcyan"
+            arithmeticKeys[ak2].style.color = "lightcyan";
+        }
+        for (let nb = 0; nb < notesBtns.length; nb++) {
+          notesBtns[nb].style.backgroundColor = "transparent";
+          notesBtns[nb].style.border = "2.5px solid #FF4466";
+          notesBtns[nb].style.color = "yellow";
+        }
+     }
+    </script>
+  </body>
+</html>
